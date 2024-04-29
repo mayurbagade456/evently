@@ -63,13 +63,13 @@ if (eventType === "user.created") {
   }
 
   const newUser = await createUser({
-    clerkId: id,
-    email: email_addresses[0].email_address,
-    username: username || "",
-    firstName: first_name,
-    lastName: last_name,
-    photo: image_url,
-  });
+  clerkId: id,
+  email: email_addresses[0].email_address,
+  username: username || "",
+  firstName: first_name || "", // Use an empty string if first_name is null
+  lastName: last_name,
+  photo: image_url,
+});
 
   return NextResponse.json({ message: "OK", user: newUser });
 }
