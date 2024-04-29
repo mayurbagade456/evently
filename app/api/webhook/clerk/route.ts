@@ -1,5 +1,5 @@
 import { Webhook } from 'svix';
-import headers from 'next/headers'; // Import the headers function without destructuring
+import { getHeaders } from 'next/headers'; // Import the headers function without destructuring
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions';
 import { NextResponse } from 'next/server';
@@ -12,10 +12,10 @@ export async function POST(req: Request) {
         throw new Error('Please add WEBHOOK_SECRET from Clerk Dashboard to .env or .env.local');
     }
 
-    const headerPayload = headers(); // Call the headers function without passing req
-    const svix_id = headerPayload.get("svix-id");
-    const svix_timestamp = headerPayload.get("svix-timestamp");
-    const svix_signature = headerPayload.get("svix-signature");
+    const headerPayload = getHeaders(req); // Call getHeaders with req to get the headers
+const svix_id = headerPayload.get("svix-id");
+const svix_timestamp = headerPayload.get("svix-timestamp");
+const svix_signature = headerPayload.get("svix-signature");
 
     if (!svix_id || !svix_timestamp || !svix_signature) {
         return new Response('Error occurred -- no svix headers', {
