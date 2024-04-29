@@ -3,7 +3,7 @@ import headers from 'next/headers'; // Import the headers function without destr
 import { WebhookEvent } from '@clerk/nextjs/server';
 import { createUser, deleteUser, updateUser } from '@/lib/actions/user.actions';
 import { NextResponse } from 'next/server';
-import { clerkClient } from '@/path/to/your/clerkClient/file'; // Update the path to match your actual file path
+import { clerkClient } from '@clerk/nextjs/server';
 
 export async function POST(req: Request) {
     const WEBHOOK_SECRET = process.env.WEBHOOK_SECRET;
