@@ -81,10 +81,11 @@ if (eventType === "user.created") {
 
     const updatedUser = await updateUser(id!, {
   firstName: first_name ?? "", // Use an empty string if first_name is null
-  lastName: last_name,
+  lastName: last_name ?? "", // Use an empty string if last_name is null
   username: username || "",
   photo: image_url,
 });
+
 
 
     return NextResponse.json({ message: "OK", user: updatedUser });
