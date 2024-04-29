@@ -79,12 +79,13 @@ if (eventType === "user.created") {
   if (eventType === "user.updated") {
     const { image_url, first_name, last_name, username } = evt.data;
 
-    const updatedUser = await updateUser(id, {
-      firstName: first_name,
-      lastName: last_name,
-      username: username || "",
-      photo: image_url || "",
-    });
+    const updatedUser = await updateUser(id!, {
+  firstName: first_name,
+  lastName: last_name,
+  username: username || "",
+  photo: image_url,
+});
+
 
     return NextResponse.json({ message: "OK", user: updatedUser });
   }
