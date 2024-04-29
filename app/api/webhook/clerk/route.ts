@@ -80,7 +80,7 @@ if (eventType === "user.created") {
     const { image_url, first_name, last_name, username } = evt.data;
 
     const updatedUser = await updateUser(id!, {
-  firstName: first_name,
+  firstName: first_name ?? "", // Use an empty string if first_name is null
   lastName: last_name,
   username: username || "",
   photo: image_url,
