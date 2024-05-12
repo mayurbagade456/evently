@@ -12,21 +12,12 @@ import { CreateUserParams, UpdateUserParams } from '@/types'
 
 export async function createUser(user: CreateUserParams) {
   try {
-    await connectToDatabase();
+    await connectToDatabase()
 
-    // Remove null or undefined values from the 'user' object
-
-    const sanitizedUser = Object.fromEntries(
-      Object.entries(user).filter(
-        ([, value]) => value !== null && value !== undefined
-      )
-    );
-
-    const newUser = await User.create(sanitizedUser);
-
-    return JSON.parse(JSON.stringify(newUser));
+    const newUser = await User.create(user)
+    return JSON.parse(JSON.stringify(newUser))
   } catch (error) {
-    handleError(error);
+    handleError(error)
   }
 }
 
